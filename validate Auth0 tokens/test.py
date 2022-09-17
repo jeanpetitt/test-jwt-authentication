@@ -4,9 +4,9 @@ from urllib.request import urlopen
 
 # Configuration
 # UPDATE THIS TO REFLECT YOUR AUTH0 ACCOUNT
-AUTH0_DOMAIN = 'dev-sy8qy3vw.us.auth0.com'
+AUTH0_DOMAIN = 'fullstac-udacity-ndg.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'Trivia'
+API_AUDIENCE = 'coffeshop'
 
 '''
 AuthError Exception
@@ -18,13 +18,14 @@ class AuthError(Exception):
         self.status_code = status_code
 
 # paste your tokenMAKE SURE THIS IS A VALID AUTH0 TOKEN FROM THE LOGIN FLOW
-token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImxDakJWb2F4Q1VKRGsxdjFXWjNoXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1zeThxeTN2dy51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMxNmE5NmM4NDAyMjFkMWQyMzE2ZGY2IiwiYXVkIjoiVHJpdmlhIiwiaWF0IjoxNjYyNjY2NzU4LCJleHAiOjE2NjI2NzM5NTgsImF6cCI6IkdScGE0aFJFNEhpcnZ4WWZiYzFrWlNmeHhnQ0RjMUFXIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJlZGl0IGFsYnVtIiwicG9zdCBhbGJ1bSJdfQ.nYFfiGW95YjzVwB0FWUw-rPP_YCUtWZlFCWz74CZkiOar92dc0DpYvFzp5zFXxihJbrGP_MRIy2dFWnTU9EPqZ_BKRmBZfqLVaNAt9h6osEQh-TGhtBayfVKBqbB5-F41nYms4w14mu_OuNQ2cLbj_O8e2wJTp4c7nUvwMWtTBw8yEc7HXEPEaXQMwlopyOr6Hi811t2R01svWkGDLF5QGtFpEmNElFzDo7wiA9K-Wvl5A6W70H66G_nWgSJhouUncnmYKgIPrcNHvkcyKEc9E3afKCYbk2t992WP-CMjbJgdaF4eT5AuLxI7Q1kmecTzOt3UC-oTM79t_AxmqwFpw' 
+token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjE1dEhKZ0NJOUlqTFF4R3p6dVk2TiJ9.eyJpc3MiOiJodHRwczovL2Z1bGxzdGFjay11ZGFjaXR5LW5kZy51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyNTNiYjEzOWYxMWUwM2ZkOGYyYWNhIiwiYXVkIjoiY29mZmVzaG9wIiwiaWF0IjoxNjYzMzg1NDUwLCJleHAiOjE2NjM0NTc0NTAsImF6cCI6ImkxNW1nc1QxSndISjFwYm5aR3hHNFN4czFFWUwxYTBXIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkcmluay1kZXRhaWwiLCJkcmlua3MiXX0.Lmhn3oMGl4-33ZGsDBunf6jXTQKNLGeGvE_3J1sxl1j8Ec1ou_6b_lhRyEVOBzcPN2IDUuozUBUd4iN38Gz8IAywbRktU4ywmDW_cfNZ9xPEGwFawcdCwS-2PtQJQmHY2G9kDbSVZ-mfl8Qfgs4TYlxpiCOe5aqq2utR9ePwTTWhSwI3s1TO-iXXQTa7NlIWALocx18JfZNPb6ZJ32z42m7_a4AfZ4apf-IPr-IYGD6H2tt8aY7CUEdeTZIcMRImIZIS0sWxlXrbOjMku4UBFcOBDcH4pe23cJAdIph2UCjUlurXxuoOUwm43IkzHOpEU9wYAWr7mIFjTrAlC1wUmg' 
 
 ## Auth Header
 def verify_decode_jwt(token):
     # GET THE PUBLIC KEY FROM AUTH0
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
+    print('JWK', jwks)
     
     # GET THE DATA IN THE HEADER
     unverified_header = jwt.get_unverified_header(token)
