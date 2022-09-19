@@ -83,4 +83,4 @@ def verify_decode_jwt(token):
                 'description': 'Unable to find the appropriate key.'
             }, 400)
 
-verify_decode_jwt(token)
+    return verify_decode_jwt(token)
